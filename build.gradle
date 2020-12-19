@@ -39,6 +39,10 @@ jar {
 tasks.assemble.dependsOn tasks.shadowJar
 
 java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(15)
+    }
+
     withSourcesJar()
 }
 
