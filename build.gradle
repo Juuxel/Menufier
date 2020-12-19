@@ -15,6 +15,14 @@ repositories {
         name = "Fabric"
         url = uri("https://maven.fabricmc.net")
     }
+
+    maven {
+        name = "Jitpack"
+        url = uri("https://jitpack.io")
+        content {
+            includeGroupByRegex "com\\.github\\..+"
+        }
+    }
 }
 
 dependencies {
@@ -22,6 +30,7 @@ dependencies {
     implementation group: "net.fabricmc", name: "tiny-mappings-parser", version: "0.3.0+build.17"
     implementation group: "org.organicdesign", name: "Paguro", version: "3.5.9"
 
+    compileOnly group: "com.github.Juuxel", name: "fabric-loom", version: "bb356171"
     compileOnly group: "org.jetbrains", name: "annotations", version: "20.1.0"
 }
 
@@ -32,7 +41,7 @@ tasks.withType(JavaCompile) {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'juuxel.menufier.main.Menufier'
+        attributes 'Main-Class': 'juuxel.menufier.Menufier'
     }
 }
 

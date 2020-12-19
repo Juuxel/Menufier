@@ -4,9 +4,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package juuxel.menufier.main;
+package juuxel.menufier;
 
-import juuxel.menufier.Replacer;
 import net.fabricmc.mapping.reader.v2.TinyMetadata;
 import net.fabricmc.mapping.tree.*;
 import org.jetbrains.annotations.Nullable;
@@ -130,7 +129,7 @@ public final class Menufier implements Callable<@Nullable Void> {
         Files.write(targetPath, lines);
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         new CommandLine(new Menufier()).execute(args);
     }
 }
