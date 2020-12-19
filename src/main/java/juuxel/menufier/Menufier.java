@@ -54,7 +54,9 @@ public final class Menufier implements Callable<@Nullable Void> {
 
         final Map<Pattern, UnaryOperator<String>> patterns = map(
                 replace("ScreenHandler", "Menu"),
+                replace("screenHandler", "menu"),
                 replace("HandledScreen", "MenuScreen"),
+                replace("SCREEN_HANDLER", "MENU"), // Registry
                 replace("net/minecraft/screen", "net/minecraft/menu")
         );
         final Replacer replacer = new Replacer("named", patterns);
