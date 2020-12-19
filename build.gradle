@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'maven-publish'
+    id 'org.cadixdev.licenser' version '0.5.0'
+}
+
+group 'io.github.juuxel'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+
+    maven {
+        name = "Fabric"
+        url = uri("https://maven.fabricmc.net")
+    }
+}
+
+dependencies {
+    implementation group: "info.picocli", name: "picocli", version: "4.5.2"
+    implementation group: "net.fabricmc", name: "tiny-mappings-parser", version: "0.3.0+build.17"
+    implementation group: "org.organicdesign", name: "Paguro", version: "3.5.9"
+
+    compileOnly group: "org.jetbrains", name: "annotations", version: "20.1.0"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.release.set 15
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'juuxel.menufier.main.Menufier'
+    }
+}
+
+tasks.assemble.dependsOn tasks.shadowJar
+
+java {
+    withSourcesJar()
+}
+
+license {
+    header = file('HEADER.txt')
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
